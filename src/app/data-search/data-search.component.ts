@@ -20,7 +20,9 @@ followers=[];
 columnName=[];
 rowData=[];
 excel=[];
+filteredArray=[];
 defaultDisplayNumber=10;
+actual_array=[];
   constructor(private excelService: ExcelServicesService, private service: SearchJsonService) {
 
     this.service.getJson().subscribe(
@@ -33,6 +35,7 @@ defaultDisplayNumber=10;
       });
       this.searchData.rows.forEach(element => {
         this.rowData.push(element);
+        this.actual_array.push(element);
         this.excel.push(element);
       });
       console.log(this.rowData);
@@ -54,5 +57,19 @@ defaultDisplayNumber=10;
  }
  pageChanged(event){
   this.config.currentPage = event;
+  console.log(this.config.currentPage);
+}
+keySearch(event){
+  this.config.currentPage=1;
+  if(event.target.value.length<1){
+    this.searchData.rows.forEach(element => {
+      this.rowData=this.actual_array;
+    });
+  }
+   this.rowData=this.actual_array.filter((element)=>{
+    if(!element.name.toLowerCase().indexOf(event.target.value)){
+      return element;
+    }
+  });
 }
 }

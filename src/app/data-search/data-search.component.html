@@ -11,7 +11,7 @@
 
 
                     </div>
-                    <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search">
+                    <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search" (input)="keySearch($event)">
                   </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of rowData | paginate: config">           
-      <td *ngFor="let list of item | keys">{{item[list]}}</td>
+      <td *ngFor="let list of item | keys ">{{item[list]}}</td>
     </tr>
   </tbody>
 </table>
