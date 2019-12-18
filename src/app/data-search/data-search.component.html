@@ -1,0 +1,58 @@
+<div class="container">
+	<div class="row">
+        <div class="col-md-6">
+            <div id="custom-search-input"  style="margin: 20px;">
+                <div class="input-group col-md-12">
+
+                  <div class="input-group md-form form-sm form-1 pl-0">
+                    <div class="input-group-prepend">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+
+
+
+                    </div>
+                    <input class="form-control my-0 py-1" type="text" placeholder="Search" aria-label="Search">
+                  </div>
+                </div>
+            </div>
+        </div>
+        <button class="col-md-3" (click)="exportAsXLSX()" class="btn btn-info mb-5 mt-4">Download Excel</button>
+<div class="col-md-12 paginateRight align-right">
+  <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+</div>
+
+	</div>
+</div>
+
+
+
+<table class="table table-bordered container">
+  <thead class="table-bordered">
+    <tr>
+      <th *ngFor="let column of columnName" scope="col">{{column}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of rowData | paginate: config">           
+      <td *ngFor="let list of item | keys">{{item[list]}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+  <li [ngClass]="{disabled:pager.currentPage === 1}">
+      <a (click)="setPage(1)">First</a>
+  </li>
+  <li [ngClass]="{disabled:pager.currentPage === 1}">
+      <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+  </li>
+  <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+      <a (click)="setPage(page)">{{page}}</a>
+  </li>
+  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+      <a (click)="setPage(pager.currentPage + 1)">Next</a>
+  </li>
+  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+      <a (click)="setPage(pager.totalPages)">Last</a>
+  </li>
+</ul> -->
